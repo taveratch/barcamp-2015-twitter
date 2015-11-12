@@ -1,0 +1,31 @@
+<html ng-app="embedded-twitter">
+<head>
+
+<link href="css/bootstrap.min.css" rel="stylesheet"></link>
+<link href="css/style.css" rel="stylesheet"></link>
+<script src="js/angular.min-2.js"></script>
+<script src="js/app.js"></script>
+</head>
+
+<body ng-controller="App-Controller">
+  <div class="container">
+    <ul class="media-list" ng-repeat="data in data">
+      <li class="media">
+        <div class="media-left">
+          <img class="media-object" src="{{data.user.profile_image_url}}">
+        </div>
+        <div class="media-body">
+
+          <h5 class="media-heading full-name">{{data.user.name}}</h5>
+          <span class="id-name">@{{data.user.screen_name}}</span>
+          <h5 class="media-heading text">{{data.text}}</h5>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/codebird.js"></script>
+</body>
+</html>
