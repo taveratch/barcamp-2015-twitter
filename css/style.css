@@ -4,6 +4,11 @@
   /*float: left;*/
 }
 
+.col-md-4{
+  /*width:100%;*/
+  margin: 0px;
+}
+
 body{
   background: url("../images/main-bg.jpg") no-repeat center center fixed;
   /*background-size: cover;
@@ -13,20 +18,37 @@ body{
         -o-background-size: cover;
         background-size: cover;
 }
+.bigContainer{
+  margin : 0px;
+  padding : 0px;
+}
 .full-name{
   display: inline;
   color : #f0e6b1;
 }
 
+.video, .twitter{
+  margin : 0px;
+  padding : 0px;
+  display: flex;
+  align-items: center;
+  /*background-color: red;*/
+}
 .id-name{
   margin-left: 10px;
   color : #99a37a;
 }
 
 .media-list{
+    margin-top : 20px;
+    margin-left : 40px;
+    margin-right : 40px;
+    /*background-color: red;*/
+}
+.media{
   padding : 10px;
-  margin-top : 5px;
-  margin-bottom: 5px;
+  margin-top : 10px;
+  margin-bottom: 10px;
   background-color:rgba(61, 53, 54, 0.8);
   border-radius: 5px;
   -webkit-box-shadow: 3px 3px 3px #000;

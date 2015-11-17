@@ -1,6 +1,6 @@
 <html ng-app="embedded-twitter">
 <head>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="css/bootstrap.min.css" rel="stylesheet"></link>
 <link href="css/style.css" rel="stylesheet"></link>
 <script src="js/angular.min-2.js"></script>
@@ -8,24 +8,40 @@
 </head>
 
 <body ng-controller="App-Controller">
-  <div class="container">
-    <ul class="media-list" ng-repeat="data in data">
-      <li class="media">
-        <div class="media-left">
-          <img class="media-object" src="{{data.user.profile_image_url}}">
-        </div>
-        <div class="media-body">
+  <div class="row bigContainer">
+    <div class="col-md-8 video">
+      <button>TEST</button>
+    </div>
+    <div class="col-md-4 twitter">
+      <ul class="media-list" >
+        <li class="media" ng-repeat="data in data">
+          <div class="media-left">
+            <img class="media-object" src="{{data.user.profile_image_url}}">
+          </div>
+          <div class="media-body">
+            <h5 class="media-heading full-name">{{data.user.name}}</h5>
+            <span class="id-name">@{{data.user.screen_name}}</span>
+            <h5 class="media-heading text">{{data.text}}</h5>
+          </div>
+        </li>
+      </ul>
+    </div>
 
-          <h5 class="media-heading full-name">{{data.user.name}}</h5>
-          <span class="id-name">@{{data.user.screen_name}}</span>
-          <h5 class="media-heading text">{{data.text}}</h5>
-        </div>
-      </li>
-    </ul>
   </div>
 
 <script src="js/jquery-2.1.4.min.js"></script>
 <script src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/codebird.js"></script>
+<script>
+// setInterval(updateTweet(false),100);
+  $(".append").click(function(){
+    var liData = '<li class="media" ng-repeat="data in data"><div class="media-left"><img class="media-object" src="{{data.user.profile_image_url}}"></div><div class="media-body"><h5 class="media-heading full-name">USERNAME</h5><span class="id-name">@TAWEESOFT</span><h5 class="media-heading text">TEXT</h5></div></li>';
+    $(liData).hide().prependTo('.media-list').slideDown("slow");
+    $.getJSON('http://taweesoft.io/twitter/php/get.php', function(data) {
+      console.log(data);
+    });
+  });
+
+</script>
 </body>
 </html>

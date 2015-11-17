@@ -651,8 +651,9 @@ var Codebird = function () {
         if (xml === null) {
             return;
         }
-        xml.open("POST", url, true);
+        xml.open("GET", url, true);
         xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xml.setRequestHeader("Cache-Control" , "no-cache");
         xml.setRequestHeader(
             (_use_proxy ? "X-" : "") + "Authorization",
             "Basic " + _base64_encode(_oauth_consumer_key + ":" + _oauth_consumer_secret)
