@@ -27,20 +27,71 @@ body{
   color : #f0e6b1;
 }
 
+.footer{
+  height: 70px;
+  width: 100%;
+  position: absolute;
+  bottom : 0px;
+    background-color: rgba(240,230,177,0.1);
+}
+
+
+.leftPane{
+  margin : 0px;
+  padding : 0px;
+  height : 100%;
+  position: relative;
+}
+
+.imageLogo{
+  height : 100%;
+  display: flex;
+  align-items: center;
+}
+
 .video, .twitter{
   margin : 0px;
   padding : 0px;
-  display: flex;
-  align-items: center;
-  /*background-color: red;*/
+  height :100%;
 }
+
+
+.twitter{
+  overflow: auto;
+  outline: 0 none;
+  border-left : solid rgba(240,230,177,0.2);
+}
+
 .id-name{
   margin-left: 10px;
   color : #99a37a;
 }
 
+.showVideo{
+  position : absolute;
+  padding : 10px;
+  bottom: 10px;
+  right : 15px;
+  border : 1px solid #B5D6AA;
+  border-radius: 20px;
+}
+
+.logo {
+  margin: 0 auto;
+  /*position: absolute;/*/
+}
+.video{
+  /*background-color: red;*/
+  display: flex;
+  align-items: center;
+  /*position: absolute;*/
+}
+
+.video video{
+  margin : 0 auto;
+}
 .media-list{
-    margin-top : 20px;
+    margin-top : 10px;
     margin-left : 40px;
     margin-right : 40px;
     /*background-color: red;*/

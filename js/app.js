@@ -1,5 +1,11 @@
 angular.module('embedded-twitter',[])
 
+.config(['$httpProvider', function($httpProvider) {
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    }
+])
+
 .controller('App-Controller',function($scope,$interval){
 
   this.data2 = [];
@@ -13,7 +19,8 @@ angular.module('embedded-twitter',[])
   };
   function updateTweet(isMain){
     // var temp = [];
-    $.getJSON('http://taweesoft.io/twitter/php/tweets.txt', function(reply) {
+    var noCache = new Date().getTime();
+    $.getJSON('http://taweesoft.io/twitter/php/tweets.txt',{"noCache": noCache, cache: false}, function(reply) {
       if(isMain){
         $scope.data = reply.statuses;
         this.data2 = $scope.data;
