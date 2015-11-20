@@ -86,6 +86,10 @@ body{
   /*border-left : 2px solid rgba(240,230,177,0.2);*/
 }
 
+.twitter::-webkit-scrollbar {
+    display: none;
+}
+
 .id-name{
   margin-left: 10px;
   color : #99a37a;
@@ -136,7 +140,6 @@ body{
     margin-right : 40px;
     /*background-color: red;*/
 }
-
 .hashTag h2{
   color: white;
   text-align: center;
