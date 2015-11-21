@@ -33,18 +33,18 @@
 
     </div>
     <div class="col-md-4 twitter">
-      <div class="hashTag">
+      <!-- <div class="hashTag">
         <h2>#bcbk</h2>
-      </div>
-      <ul class="media-list" >
-        <li class="media" ng-repeat="data in data">
+      </div> -->
+      <ul class="media-list">
+        <li class="media" ng-repeat="data in data" >
           <div class="media-left">
             <img class="media-object" src="{{data.user.profile_image_url}}">
           </div>
           <div class="media-body">
             <h5 class="media-heading full-name">{{data.user.name}}</h5>
             <span class="id-name">@{{data.user.screen_name}}</span>
-            <h5 class="media-heading text">{{data.text}}</h5>
+            <h5 class="media-heading text" ng-bind-html="data.text | rawHtml">{{data.text}}</h5>
           </div>
         </li>
       </ul>

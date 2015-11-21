@@ -6,7 +6,13 @@ angular.module('embedded-twitter',[])
     }
 ])
 
-.controller('App-Controller',function($scope,$interval){
+.filter('rawHtml', ['$sce', function($sce){
+  return function(val) {
+    return $sce.trustAsHtml(val);
+  };
+}])
+
+.controller('App-Controller',function($scope,$interval,$sce){
 
   this.data2 = [];
   var params = {
@@ -17,11 +23,40 @@ angular.module('embedded-twitter',[])
     var liData = '<li class="media" ng-repeat="data in data"><div class="media-left"><img class="media-object" src="'+img_url+'"></div><div class="media-body"><h5 class="media-heading full-name">'+fullname+'</h5><span class="id-name">@'+username+'</span><h5 class="media-heading text">'+text+'</h5></div></li>';
     $(liData).hide().prependTo('.media-list').slideDown("slow");
   };
+
+  function highLight(text){
+    if(text.search("#bcbk") == -1) return text;
+    var index = text.search("#bcbk");
+    text = text.substring(0,index) + "<b><font color=\"#f0e6b1\">#bcbk</font></b>" + highLight(text.substring(index+5));
+    console.log(text);
+    return text;
+  }
+
+  function getBigImage(text){
+    var index = text.search("_normal.jpeg");
+    if(index==-1){
+      index = text.search("_normal.jpg");
+      if(index==-1){
+        index = text.search("_normal.png");
+        text = text.substring(0,index) + ".png";
+      }else
+        text = text.substring(0,index) + ".jpg";
+    }else{
+      text = text.substring(0,index) + ".jpeg";
+    }
+    return text;
+  }
+
   function updateTweet(isMain){
     // var temp = [];
     var noCache = new Date().getTime();
     $.getJSON('http://taweesoft.io/twitter/php/tweets.txt',{"noCache": noCache, cache: false}, function(reply) {
       if(isMain){
+        for(var i =0;i<reply.statuses.length;i++){
+          reply.statuses[i].text = highLight(reply.statuses[i].text);
+          reply.statuses[i].user.profile_image_url = getBigImage(reply.statuses[i].user.profile_image_url);
+        }
+
         $scope.data = reply.statuses;
         this.data2 = $scope.data;
         $scope.$apply();
@@ -36,13 +71,16 @@ angular.module('embedded-twitter',[])
         // console.log(temp[0].text);
         // console.log($scope.data[0].text);
         if(temp[0].text != $scope.data[0].text){
-          console.log("updated");
-          console.log(temp[0].user.name);
+          // console.log("updated");
+          // console.log(temp[0].user.name);
           for(var i =0;i<temp.length;i++){
             if(temp[i].text == $scope.data[0].text){
               if(i==0)break;
-              for(var k=i-1;k>=0;k--)
+              for(var k=i-1;k>=0;k--){
+                temp[k].text = highLight(temp[k].text);
+                temp[k].user.profile_image_url = getBigImage(temp[k].user.profile_image_url);
                 appendTweet(temp[k].user.profile_image_url,temp[k].user.name,temp[k].user.screen_name,temp[k].text);
+              }
             }
           }
         $scope.data = temp;
